@@ -49,7 +49,6 @@ public class Card {
                 ", Credit Score: " + creditScore +
                 ", Distance From The Nearest Giraffe: " + distanceFromTheNearestGiraffe +"m"+
                 ", Running Speed Through Treacle: " + runningSpeedThroughTreacle +"m/s"+
-                ", Time Spent Thinking About Triangles: " + timeSpentThinkingAboutTriangles +"hrs"+
-                '}';
+                ", Time Spent Thinking About Triangles: " + timeSpentThinkingAboutTriangles +"hrs";
     }
 }
