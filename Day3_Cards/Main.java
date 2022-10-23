@@ -5,6 +5,7 @@ A small top trumps type game
 package com.Day3_Cards;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -15,9 +16,11 @@ public class Main {
     private static void display(int playerNumber, int computerNumber) {
 
         if (playerNumber > computerNumber) {
-            System.out.println(playerNumber + " beats " + computerNumber + " you win!");
+            System.out.println(playerNumber + " is higher than " + computerNumber + " you win!");
+        } else if (playerNumber < computerNumber) {
+            System.out.println(playerNumber + " is lower than " + computerNumber + " you lose!");
         } else {
-            System.out.println(computerNumber + " beats " +  playerNumber+ " you lose!");
+            System.out.println(computerNumber + " is the same as " + playerNumber + " it's a draw!");
         }
 
     }
@@ -25,16 +28,28 @@ public class Main {
     private static void game() {
         int indexPlayer = (int) (Math.random() * cardSize);
         int indexComputer = (int) (Math.random() * cardSize);
+
         Card playerCard = cards.get(indexPlayer);
         Card computerCard = cards.get(indexComputer);
+
+        int choice = 0;
 
         System.out.println(playerCard.getName() + " vs. " + computerCard.getName() + ":");
         System.out.println(playerCard.toString());
 
         while (true) {
-            System.out.println("Combust (1), Credit(2), Giraffe (3), Speed(4), Triangle (5):");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            System.out.println("Combust (1), Credit (2), Giraffe - lowest wins (3), Speed(4), Triangle (5):");
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException error) {
+                System.out.println("Your input cannot be understood");
+                continue;
+            }
+            finally {
+                scanner.nextLine();
+            }
+
+
 
             switch (choice) {
                 case 1:
@@ -44,7 +59,8 @@ public class Main {
                     display(playerCard.getCreditScore(), computerCard.getCreditScore());
                     break;
                 case 3:
-                    display(playerCard.getDistanceFromTheNearestGiraffe(), computerCard.getDistanceFromTheNearestGiraffe());
+                    display(computerCard.getDistanceFromTheNearestGiraffe(), playerCard.getDistanceFromTheNearestGiraffe());
+                    System.out.println("Because why would you want to be far away from a Giraffe?");
                     break;
                 case 4:
                     display(playerCard.getRunningSpeedThroughTreacle(), computerCard.getRunningSpeedThroughTreacle());
@@ -53,7 +69,7 @@ public class Main {
                     display(playerCard.getTimeSpentThinkingAboutTriangles(), computerCard.getTimeSpentThinkingAboutTriangles());
                     break;
                 default:
-                    System.out.println("Your input cannot be understood");
+                    System.out.println("There isn't a choice with that number");
                     continue;
 
             }

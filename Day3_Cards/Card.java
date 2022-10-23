@@ -44,13 +44,12 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "Name:'" + name + '\'' +
-                ", Likelyhood To Combust:" + likelyhoodToCombust +"%"+
-                ", Credit Score:" + creditScore +
-                ", Distance From The Nearest Giraffe:" + distanceFromTheNearestGiraffe +"m"+
-                ", Running Speed Through Treacle:" + runningSpeedThroughTreacle +"m/s"+
-                ", Time Spent Thinking About Triangles:" + timeSpentThinkingAboutTriangles +"hrs"+
+        return "Name: " + name +
+                ", Likelyhood To Combust: " + likelyhoodToCombust +"%"+
+                ", Credit Score: " + creditScore +
+                ", Distance From The Nearest Giraffe: " + distanceFromTheNearestGiraffe +"m"+
+                ", Running Speed Through Treacle: " + runningSpeedThroughTreacle +"m/s"+
+                ", Time Spent Thinking About Triangles: " + timeSpentThinkingAboutTriangles +"hrs"+
                 '}';
     }
 }
