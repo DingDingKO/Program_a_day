@@ -17,7 +17,8 @@ public class Elephant extends Animal{
     @Override
     public int defend(int damage) {
         System.out.println("The elephant had defended");
-        if (Math.random() * 10 > 7) {
+        if ((Math.random() * 10) > 6) {
+            stamina -= 10;
             return damage;
         } else {
             return 0;

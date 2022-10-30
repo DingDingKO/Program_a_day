@@ -21,7 +21,8 @@ public class Cheetah extends Animal{
     @Override
     public int defend(int damage) {
         System.out.println("The cheetah had defended");
-        if (Math.random() * 10 < 7) {
+        if ((Math.random() * 10) < 6.5) {
+            stamina += 15;
             return damage;
         } else {
             return 0;
