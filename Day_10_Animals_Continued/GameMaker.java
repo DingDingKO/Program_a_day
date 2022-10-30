@@ -1,5 +1,8 @@
 package Day_10_Animals_Continued;
-
+/* Day 10:
+* Continuation of Day 8 to finish the Pokémon styled animal card game - some changes have also been made to Day 8
+* to balance the game.
+* */
 import Day8_Animals.Animal;
 import Day8_Animals.AnimalMaker;
 
@@ -23,13 +26,16 @@ public class GameMaker {
         Animal player2Animal;
         int player1AnimalIndex = 0;
         int player2AnimalIndex = 0;
-        while (player2AnimalsArray.size() > player2AnimalIndex && player1AnimalsArray.size() > player1AnimalIndex) {
+        while (player2AnimalsArray.size() > player2AnimalIndex) {
 
             player1Animal = player1AnimalsArray.get(player1AnimalIndex);
             player1Damage = playRound(player1Animal, 1,player2Damage);
             if (player1Animal.getHealth() <= 0) {
                 System.out.println("\n Player 1's " + player1Animal.getAnimalName() + " is down!\n");
                 player1AnimalIndex++;
+            }
+            if (player1AnimalsArray.size() <= player1AnimalIndex) {
+                break;
             }
 
             player2Animal = player2AnimalsArray.get(player2AnimalIndex);
@@ -40,10 +46,11 @@ public class GameMaker {
                 player2AnimalIndex++;
             }
         }
-        if (player1AnimalIndex == 2) {
-            System.out.println("Player 1 won!");
-        } else if(player2AnimalIndex == 2){
+        if(player1AnimalIndex == 2) {
             System.out.println("Player 2 won!");
+        }
+        else if (player2AnimalIndex == 2) {
+            System.out.println("Player 1 won!");
         }
 
     }
