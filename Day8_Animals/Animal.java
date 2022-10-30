@@ -15,7 +15,7 @@ public abstract class Animal {
 
     public Animal(String animalName) {
         this.animalName = animalName;
-        this.health = (int) (Math.random() * 100) + 200;
+        this.health = (int) (Math.random() * 100) + 100;
         this.stamina = (int) (Math.random() * 70) + 50;
     }
 
@@ -24,7 +24,22 @@ public abstract class Animal {
         stamina += 20;
     }
 
+    public String getAnimalName() {
+        return animalName;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
     public abstract int attack();
 
     public abstract int defend(int damage);
+
+    public int getStamina() {
+        return stamina;
+    }
 }

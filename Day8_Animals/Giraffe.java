@@ -23,7 +23,7 @@ public class Giraffe extends Animal{
     public int defend(int damage) {
         System.out.println("The giraffe had defended");
 
-        return - ((int)(Math.random() * damage) + 10);
+        return ((int)(Math.random() * damage) + 10);
 
 
     }
