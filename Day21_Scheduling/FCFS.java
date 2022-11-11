@@ -1,22 +1,28 @@
 package Day21_Scheduling;
 
+import java.util.ArrayList;
+
 public class FCFS {
 
-    public static double[][] fcfs_scheduler(double[][] tasks) {
+    public static ArrayList<WaitTime> fcfs_scheduler(Task[] tasks) {
         double time = 0;
-        int columnLength = tasks.length;
-        double[][] wait_times = new double[columnLength][columnLength];
 
-        for (int i = 0; i < columnLength; i++) {
-            if (time <= tasks[i][1]) {
-                time = tasks[i][1];
+        ArrayList<WaitTime> waitTimes = new ArrayList<>();
+        for (Task task : tasks) {
+            if (time <= task.getArrivalTime()) {
+                time = task.getArrivalTime();
             }
-            wait_times[i] = new double[]{tasks[i][0], time - tasks[i][1]};
-            time += tasks[i][2];
+
+            System.out.printf("%.1f%n",time);
+
+            System.out.println(task.getTaskName());
+            waitTimes.add(new WaitTime(task.getTaskName(), time - task.getArrivalTime(), task.getBurstTime()));
+            time += task.getBurstTime();
         }
+        System.out.println(time);
 
-
-        return wait_times;
+        System.out.println("\nTotal time: " + time);
+        return waitTimes;
 
     }
 }

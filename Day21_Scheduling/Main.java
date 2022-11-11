@@ -4,36 +4,40 @@ package Day21_Scheduling;
  * I was planning on doing the other methods, but I've run out of time, so I'll do them tomorrow.
  * */
 
+import Day22_Scheduling_Continued.SRTF;
+import Day22_Scheduling_Continued.SRTF_Preempt;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    private static double averageWaitTime(double[][] waitTimes) {
+    private static void averageWaitTime(ArrayList<WaitTime> waitTimes) {
         double totalWait = 0;
-        for (double wait[] : waitTimes) {
-            totalWait += wait[1];
+        for (WaitTime wait : waitTimes) {
+            totalWait += wait.getWaitTime();
         }
-        return totalWait / waitTimes.length;
+        System.out.println("\nAv. Wait: "+ String.format("%.2f", totalWait / waitTimes.size()));
     }
 
     public static void main(String[] args) {
+        Task[] tasks = TaskMaker.makeTaskList();
 
-        // task number, arrival time, and burst time
-        double[][] tasks = {
-                {1, 0, 2},
-                {2, 0.4, 1},
-                {3, 3, 5},
-                {4, 3, 0.2},
-                {5, 4, 1},
-                {6, 4.1, 0.5},
-                {7, 4.5, 3},
-                {8, 5, 0.1},
-                {9, 6, 10},
-                {10, 6.1, 0.1}
+        System.out.println("Tasks:");
+        Arrays.stream(tasks).forEach(System.out::println);
 
-        };
+        System.out.println("\nFCFS:");
+        ArrayList<WaitTime> fcfsWaitTime = FCFS.fcfs_scheduler(tasks);
+        fcfsWaitTime.forEach(System.out::println);
+        averageWaitTime(fcfsWaitTime);
 
-        double[][] fcfsWaitTime = FCFS.fcfs_scheduler(tasks);
-        System.out.println(Arrays.deepToString(fcfsWaitTime));
-        System.out.println(averageWaitTime(fcfsWaitTime));
+        System.out.println("\nSRFT - non preemptive:");
+        ArrayList<WaitTime> srtfWaittime = SRTF.srtf_scheduler(tasks);
+        srtfWaittime.forEach(System.out::println);
+        averageWaitTime(srtfWaittime);
+
+        System.out.println("\nSRFT - preemptive:");
+        ArrayList<WaitTime> srtf_preWaitTime = SRTF_Preempt.srtf_pre_scheduler(tasks);
+        srtf_preWaitTime.forEach(System.out::println);
+        averageWaitTime(srtf_preWaitTime);
     }
 }
