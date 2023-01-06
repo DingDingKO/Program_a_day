@@ -1,0 +1,3 @@
+# Write your MySQL query statement below
+SELECT employee_id, if(employee_id % 2 = 0 OR name LIKE 'M%',0,salary) as bonus
+FROM employees order by employee_id;
